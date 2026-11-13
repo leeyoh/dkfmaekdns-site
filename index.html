@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dkfmaekdns — 아름다운</title>
+<meta name="description" content="dkfmaekdns is what you get when you type 아름다운, Korean for “beautiful”, with the keyboard still set to English.">
+<meta name="theme-color" content="#faf5ee">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23c4573f'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='serif'>아</text></svg>">
+<style>
+  :root {
+    --bg: #faf5ee;
+    --surface: #ffffff;
+    --ink: #24201c;
+    --muted: #6f665d;
+    --line: #e2d8cb;
+    --accent: #c4573f;
+    --key: #fffdf9;
+    --key-edge: #d6c9b8;
+    --serif-ko: "AppleMyungjo", "Nanum Myeongjo", "Noto Serif KR", "Batang", ui-serif, Georgia, serif;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, ui-serif, Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161413;
+      --surface: #1f1c1a;
+      --ink: #f3ece2;
+      --muted: #a79d91;
+      --line: #36302b;
+      --accent: #ec8f76;
+      --key: #2a2623;
+      --key-edge: #0c0b0a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    width: 100%;
+    max-width: 760px;
+    padding: clamp(40px, 9vh, 96px) 20px 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .typed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 2.4vw, 22px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .syll { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .keys { display: flex; gap: 5px; }
+  .key {
+    position: relative;
+    width: clamp(34px, 7.4vw, 52px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: var(--key);
+    border: 1px solid var(--key-edge);
+    border-bottom-width: 4px;
+    border-radius: 9px;
+    font-family: var(--mono);
+    font-size: clamp(0.95rem, 2.6vw, 1.25rem);
+    font-weight: 600;
+    opacity: 0;
+    animation: press 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+    animation-delay: calc(var(--i) * 0.13s + 0.2s);
+  }
+  .key i {
+    position: absolute;
+    right: 4px;
+    bottom: 1px;
+    font-style: normal;
+    font-family: var(--serif-ko);
+    font-size: 0.62em;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .glyph {
+    font-family: var(--serif-ko);
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+    color: var(--accent);
+    opacity: 0;
+    animation: rise 0.6s ease forwards;
+    animation-delay: calc(var(--j) * 0.42s + 0.75s);
+  }
+  @keyframes press {
+    0% { opacity: 0; transform: translateY(-10px); }
+    60% { opacity: 1; transform: translateY(3px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    margin: clamp(28px, 6vh, 56px) 0 0;
+    font-family: var(--serif-ko);
+    font-size: clamp(4rem, 19vw, 9.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: rise 0.9s ease forwards 2.3s;
+  }
+  .gloss {
+    margin: 10px 0 0;
+    font-size: clamp(1.3rem, 3.6vw, 1.9rem);
+    font-style: italic;
+    opacity: 0;
+    animation: rise 0.9s ease forwards 2.6s;
+  }
+  .gloss small { font-style: normal; font-size: 0.62em; color: var(--muted); letter-spacing: 0.08em; margin-left: 0.5em; }
+  .explain {
+    max-width: 52ch;
+    margin: clamp(22px, 4vh, 36px) 0 0;
+    font-size: 1.08rem;
+    color: var(--muted);
+    opacity: 0;
+    animation: rise 0.9s ease forwards 2.9s;
+  }
+  .explain code, .explain b { color: var(--ink); font-weight: 600; }
+  .explain code { font-family: var(--mono); font-size: 0.92em; }
+  [lang="ko"] { font-family: var(--serif-ko); }
+
+  .try {
+    width: 100%;
+    max-width: 560px;
+    margin: clamp(32px, 6vh, 56px) 0 0;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    opacity: 0;
+    animation: rise 0.9s ease forwards 3.2s;
+  }
+  .try label { display: block; margin-bottom: 10px; font-size: 0.95rem; color: var(--muted); }
+  .try input {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .try input:focus-visible, .chips button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .out {
+    min-height: 1.5em;
+    margin: 16px 0 0;
+    font-family: var(--serif-ko);
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+  .out.empty { color: var(--line); }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+  .chips button {
+    appearance: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .chips button:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { padding: 20px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .key, .glyph, h1, .gloss, .explain, .try { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <ol class="typed" aria-label="The keys d k f m a e k d n s, which type 아름다운 on a Korean keyboard">
+    <li class="syll" style="--j:0">
+      <span class="keys"><span class="key" style="--i:0">d<i>ㅇ</i></span><span class="key" style="--i:1">k<i>ㅏ</i></span></span>
+      <span class="glyph" lang="ko">아</span>
+    </li>
+    <li class="syll" style="--j:1">
+      <span class="keys"><span class="key" style="--i:2">f<i>ㄹ</i></span><span class="key" style="--i:3">m<i>ㅡ</i></span><span class="key" style="--i:4">a<i>ㅁ</i></span></span>
+      <span class="glyph" lang="ko">름</span>
+    </li>
+    <li class="syll" style="--j:2">
+      <span class="keys"><span class="key" style="--i:5">e<i>ㄷ</i></span><span class="key" style="--i:6">k<i>ㅏ</i></span></span>
+      <span class="glyph" lang="ko">다</span>
+    </li>
+    <li class="syll" style="--j:3">
+      <span class="keys"><span class="key" style="--i:7">d<i>ㅇ</i></span><span class="key" style="--i:8">n<i>ㅜ</i></span><span class="key" style="--i:9">s<i>ㄴ</i></span></span>
+      <span class="glyph" lang="ko">운</span>
+    </li>
+  </ol>
+
+  <h1 lang="ko">아름다운</h1>
+  <p class="gloss">beautiful <small>a·reum·da·un</small></p>
+  <p class="explain">
+    <code>dkfmaekdns</code> is what comes out when you type <b lang="ko">아름다운</b>,
+    the Korean word for “beautiful”, with the keyboard still set to English.
+    Welcome to the beautiful typo.
+  </p>
+
+  <section class="try" aria-labelledby="try-label">
+    <label id="try-label" for="in">Type with English keys and see the Korean it would have been</label>
+    <input id="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="dkssud" maxlength="80">
+    <p class="out empty" id="out" lang="ko" aria-live="polite">안녕</p>
+    <div class="chips" aria-label="Examples">
+      <button type="button" data-t="dkssud">dkssud</button>
+      <button type="button" data-t="tkfkd">tkfkd</button>
+      <button type="button" data-t="rhdiddl">rhdiddl</button>
+      <button type="button" data-t="gksrmf">gksrmf</button>
+      <button type="button" data-t="dkfmaekdns">dkfmaekdns</button>
+    </div>
+  </section>
+</main>
+<footer>dkfmaekdns.com</footer>
+
+<script>
+/*conv*/
+var KEYMAP = {
+  q:'ㅂ', w:'ㅈ', e:'ㄷ', r:'ㄱ', t:'ㅅ', y:'ㅛ', u:'ㅕ', i:'ㅑ', o:'ㅐ', p:'ㅔ',
+  a:'ㅁ', s:'ㄴ', d:'ㅇ', f:'ㄹ', g:'ㅎ', h:'ㅗ', j:'ㅓ', k:'ㅏ', l:'ㅣ',
+  z:'ㅋ', x:'ㅌ', c:'ㅊ', v:'ㅍ', b:'ㅠ', n:'ㅜ', m:'ㅡ',
+  Q:'ㅃ', W:'ㅉ', E:'ㄸ', R:'ㄲ', T:'ㅆ', O:'ㅒ', P:'ㅖ'
+};
+var CHO = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+var JUNG = 'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
+var JONG = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+var VV = { 'ㅗㅏ':'ㅘ', 'ㅗㅐ':'ㅙ', 'ㅗㅣ':'ㅚ', 'ㅜㅓ':'ㅝ', 'ㅜㅔ':'ㅞ', 'ㅜㅣ':'ㅟ', 'ㅡㅣ':'ㅢ' };
+var FF = { 'ㄱㅅ':'ㄳ', 'ㄴㅈ':'ㄵ', 'ㄴㅎ':'ㄶ', 'ㄹㄱ':'ㄺ', 'ㄹㅁ':'ㄻ', 'ㄹㅂ':'ㄼ', 'ㄹㅅ':'ㄽ', 'ㄹㅌ':'ㄾ', 'ㄹㅍ':'ㄿ', 'ㄹㅎ':'ㅀ', 'ㅂㅅ':'ㅄ' };
+
+function toHangul(text) {
+  var out = '';
+  var c = '', v = '', f = '';          // f holds one or two final consonants
+  function flush() {
+    if (c && v) {
+      var fin = f.length === 2 ? FF[f] : f;
+      out += String.fromCharCode(0xAC00 + (CHO.indexOf(c) * 21 + JUNG.indexOf(v)) * 28 + JONG.indexOf(fin));
+    } else {
+      out += c + v;
+    }
+    c = ''; v = ''; f = '';
+  }
+  for (var n = 0; n < text.length; n++) {
+    var ch = text.charAt(n);
+    var j = KEYMAP[ch] || KEYMAP[ch.toLowerCase()];
+    if (!j) { flush(); out += ch; continue; }
+    if (JUNG.indexOf(j) >= 0) {                       // vowel
+      if (f) {                                        // last final moves to the next syllable
+        var next = f.charAt(f.length - 1);
+        f = f.slice(0, -1);
+        flush(); c = next; v = j;
+      } else if (v) {
+        if (VV[v + j]) { v = VV[v + j]; } else { flush(); v = j; }
+      } else {
+        v = j;
+      }
+    } else {                                          // consonant
+      if (c && v && !f && JONG.indexOf(j) > 0) { f = j; }
+      else if (c && v && f.length === 1 && FF[f + j]) { f += j; }
+      else { flush(); c = j; }
+    }
+  }
+  flush();
+  return out;
+}
+/*endconv*/
+
+(function () {
+  var input = document.getElementById('in');
+  var out = document.getElementById('out');
+  function render() {
+    var t = input.value;
+    out.textContent = t ? toHangul(t) : toHangul(input.placeholder);
+    out.classList.toggle('empty', !t);
+  }
+  input.addEventListener('input', render);
+  Array.prototype.forEach.call(document.querySelectorAll('.chips button'), function (b) {
+    b.addEventListener('click', function () { input.value = b.getAttribute('data-t'); render(); input.focus(); });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
